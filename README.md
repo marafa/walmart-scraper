@@ -9,6 +9,8 @@ Thanks for choosing to read this.
 
 ..* bs4
 
+..* lxml
+
 ## GETTING STARTED
 1. git clone https://github.com/syntaxity/walmart-scraper
 2. cd walmart-scraper
