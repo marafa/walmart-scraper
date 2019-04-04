@@ -30,7 +30,7 @@ def get_page(url):
 
         return soup
     except:
-        print("PRODUCT PAGE NOT FOUND")
+        print("PRODUCT PAGE NOT FOUND...")
         return
 
 def get_details(soup):
