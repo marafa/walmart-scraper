@@ -3,8 +3,10 @@
 Thanks for choosing to read this.
 
 ## REQUIREMENTS
-..* python3 -
+..* python3 - (https://www.python.org/download/releases/3.0/)
+
 ..* requests
+
 ..* bs4
 
 ## GETTING STARTED
