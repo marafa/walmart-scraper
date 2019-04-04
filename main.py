@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
+#csvfilename = ""
+
 def query_user():
     print("Enter the search here: ")
     # arrange the query in the right order to concatenate to url
@@ -15,8 +17,8 @@ def query_user():
 
     r = requests.get(url)
     if(r.ok):
-        csvfilename = full_query.replace("+", "")
-        csvfilename += ".csv"
+        query_user.csvfilename = full_query.replace("+", "")
+        query_user.csvfilename += ".csv"
         return url
     else:
         print("Bad search. Check your search or try again")
@@ -98,7 +100,8 @@ def create_dictionary(details):
     return detailsdict
 
 def create_csv_file(detailsdict, newline = " "):
-    with open("output.csv", "a") as csvfile:
+    filename = query_user.csvfilename
+    with open(filename, "a") as csvfile:
         row = ["PRODUCT NAME", "PRODUCT LINK", "PRICE"]
         writer = csv.writer(csvfile)
         writer.writerow(row)
