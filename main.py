@@ -1,5 +1,5 @@
 import os, platform, csv, getpass # python built-in
-import requests # Installed
+import requests, lxml # Installed
 from bs4 import BeautifulSoup
 
 
@@ -25,7 +25,7 @@ def query_user():
 
 def get_page(url):
     try:
-        response = requests.get(url);
+        response = requests.get(url)
         soup = BeautifulSoup(response.text, "lxml")
 
         return soup
