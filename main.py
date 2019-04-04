@@ -1,8 +1,7 @@
-import requests
+import os, platform, csv, getpass # python built-in
+import requests # Installed
 from bs4 import BeautifulSoup
-import csv
 
-#csvfilename = ""
 
 def query_user():
     print("Enter the search here: ")
@@ -33,7 +32,6 @@ def get_page(url):
     except:
         print("PRODUCT PAGE NOT FOUND")
         return
-
 
 def get_details(soup):
     # titles
@@ -99,9 +97,20 @@ def create_dictionary(details):
 
     return detailsdict
 
+def get_computer_info():
+    get_computer_info.os_name = platform.system()
+
+    if(get_computer_info.os_name == "Darwin"):
+        get_computer_info.desktop_path = os.path.expanduser("~/Desktop/")
+    elif(get_computer_info.os_name == "Windows"):
+        get_computer_info.desktop_path = os.environ['USERPROFILE'] + "\Desktop\\]"
+    else: # Then its "Linux"
+        get_computer_info.desktop_path = os.path.expanduser("~/Desktop/")
+    return
+
 def create_csv_file(detailsdict, newline = " "):
-    filename = query_user.csvfilename
-    with open(filename, "a") as csvfile:
+    file_path = get_computer_info.desktop_path + query_user.csvfilename
+    with open(file_path, "a") as csvfile:
         row = ["PRODUCT NAME", "PRODUCT LINK", "PRICE"]
         writer = csv.writer(csvfile)
         writer.writerow(row)
@@ -110,9 +119,12 @@ def create_csv_file(detailsdict, newline = " "):
             writer.writerow(row)
 
 def main():
+    get_computer_info()
     page = get_page(query_user())
-    # page = get_page(url)
     details = get_details(page)
     create_csv_file(create_dictionary(details))
+
+
+
 
 main()
